@@ -46,3 +46,9 @@ def test_products_getter(product):
     category = Category("Смартфоны", "описание", [product])
     expected = "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт.\n"
     assert category.products == expected
+
+
+def test_category_str(product, product2):
+    category = Category("Смартфоны", "описание", [product, product2])
+    # 5 + 8 = 13
+    assert str(category) == "Смартфоны, количество продуктов: 13 шт."

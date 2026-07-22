@@ -13,6 +13,10 @@
 Геттер products возвращает строку со списком товаров.
 Также есть атрибуты класса category_count и product_count.
 
+Добавлены магические методы:
+- `__str__` у Product и Category
+- `__add__` у Product (сумма price * quantity)
+
 ## Как запустить
 
 ```bash
