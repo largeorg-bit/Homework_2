@@ -17,6 +17,11 @@
 - `__str__` у Product и Category
 - `__add__` у Product (сумма price * quantity)
 
+Наследование:
+- классы Smartphone и LawnGrass — наследники Product
+- складывать можно только товары одного класса (иначе TypeError)
+- в категорию можно добавить только Product и его наследников
+
 ## Как запустить
 
 ```bash

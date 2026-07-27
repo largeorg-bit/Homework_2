@@ -1,4 +1,6 @@
+from src.lawn_grass import LawnGrass
 from src.product import Product
+from src.smartphone import Smartphone
 
 
 def test_product_init(product):
@@ -58,3 +60,55 @@ def test_product_str(product):
 def test_product_add(product, product2):
     # 180000 * 5 + 210000 * 8
     assert product + product2 == 2580000.0
+
+
+def test_smartphone_init():
+    phone = Smartphone(
+        "Samsung Galaxy S23 Ultra",
+        "256GB, Серый цвет, 200MP камера",
+        180000.0,
+        5,
+        95.5,
+        "S23 Ultra",
+        256,
+        "Серый",
+    )
+    assert phone.name == "Samsung Galaxy S23 Ultra"
+    assert phone.efficiency == 95.5
+    assert phone.model == "S23 Ultra"
+    assert phone.memory == 256
+    assert phone.color == "Серый"
+    assert isinstance(phone, Product)
+
+
+def test_lawn_grass_init():
+    grass = LawnGrass(
+        "Газонная трава",
+        "Элитная трава для газона",
+        500.0,
+        20,
+        "Россия",
+        "7 дней",
+        "Зеленый",
+    )
+    assert grass.name == "Газонная трава"
+    assert grass.country == "Россия"
+    assert grass.germination_period == "7 дней"
+    assert grass.color == "Зеленый"
+    assert isinstance(grass, Product)
+
+
+def test_add_same_class():
+    phone1 = Smartphone("Phone1", "desc", 100.0, 2, 90.0, "m1", 64, "black")
+    phone2 = Smartphone("Phone2", "desc", 200.0, 3, 91.0, "m2", 128, "white")
+    assert phone1 + phone2 == 100.0 * 2 + 200.0 * 3
+
+
+def test_add_different_class():
+    phone = Smartphone("Phone1", "desc", 100.0, 2, 90.0, "m1", 64, "black")
+    grass = LawnGrass("Grass", "desc", 50.0, 10, "Россия", "7 дней", "green")
+    try:
+        phone + grass
+        assert False
+    except TypeError:
+        assert True

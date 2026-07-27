@@ -1,5 +1,8 @@
+import pytest
+
 from src.category import Category
 from src.product import Product
+from src.smartphone import Smartphone
 
 
 def test_category_init(product, product2):
@@ -40,6 +43,20 @@ def test_add_product(product, product2):
     assert Category.product_count == 2
     assert "Iphone 15" in category.products
     assert category.add_product(Product("Test", "desc", 100.0, 1)) is None
+
+
+def test_add_product_smartphone():
+    phone = Smartphone("Phone", "desc", 100.0, 1, 90.0, "m1", 64, "black")
+    category = Category("Смартфоны", "описание", [])
+    category.add_product(phone)
+    assert Category.product_count == 1
+    assert "Phone" in category.products
+
+
+def test_add_product_not_product():
+    category = Category("Смартфоны", "описание", [])
+    with pytest.raises(TypeError):
+        category.add_product("Not a product")
 
 
 def test_products_getter(product):
