@@ -1,4 +1,8 @@
-class Product:
+from src.base_product import BaseProduct
+from src.creation_mixin import CreationMixin
+
+
+class Product(CreationMixin, BaseProduct):
     """Класс продукта"""
 
     name: str
@@ -10,6 +14,7 @@ class Product:
         self.description = description
         self.__price = price
         self.quantity = quantity
+        super().__init__()
 
     @classmethod
     def new_product(cls, product_data: dict):

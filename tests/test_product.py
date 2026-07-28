@@ -1,3 +1,4 @@
+from src.base_product import BaseProduct
 from src.lawn_grass import LawnGrass
 from src.product import Product
 from src.smartphone import Smartphone
@@ -112,3 +113,25 @@ def test_add_different_class():
         assert False
     except TypeError:
         assert True
+
+
+def test_product_inherits_base_product():
+    product = Product("Test", "desc", 100.0, 1)
+    assert isinstance(product, BaseProduct)
+    assert issubclass(Product, BaseProduct)
+    assert Smartphone.__bases__ == (Product,)
+    assert LawnGrass.__bases__ == (Product,)
+
+
+def test_cannot_create_base_product():
+    try:
+        BaseProduct()
+        assert False
+    except TypeError:
+        assert True
+
+
+def test_creation_mixin_print(capsys):
+    Product("Продукт1", "Описание продукта", 1200, 10)
+    message = capsys.readouterr().out
+    assert "Product('Продукт1', 'Описание продукта', 1200, 10)" in message
