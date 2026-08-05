@@ -135,3 +135,11 @@ def test_creation_mixin_print(capsys):
     Product("Продукт1", "Описание продукта", 1200, 10)
     message = capsys.readouterr().out
     assert "Product('Продукт1', 'Описание продукта', 1200, 10)" in message
+
+
+def test_product_zero_quantity():
+    try:
+        Product("Бракованный товар", "Неверное количество", 1000.0, 0)
+        assert False
+    except ValueError as e:
+        assert str(e) == "Товар с нулевым количеством не может быть добавлен"

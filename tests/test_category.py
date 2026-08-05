@@ -69,3 +69,15 @@ def test_category_str(product, product2):
     category = Category("Смартфоны", "описание", [product, product2])
     # 5 + 8 = 13
     assert str(category) == "Смартфоны, количество продуктов: 13 шт."
+
+
+def test_middle_price(product, product2):
+    product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
+    category = Category("Смартфоны", "описание", [product, product2, product3])
+    expected = (180000.0 + 210000.0 + 31000.0) / 3
+    assert category.middle_price() == expected
+
+
+def test_middle_price_empty():
+    category = Category("Пустая категория", "без продуктов", [])
+    assert category.middle_price() == 0

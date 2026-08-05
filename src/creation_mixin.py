@@ -1,6 +1,11 @@
 class CreationMixin:
     """Миксин: печатает информацию о созданном объекте"""
 
+    name: str
+    description: str
+    price: float
+    quantity: int
+
     def __init__(self):
         print(repr(self))
         super().__init__()
